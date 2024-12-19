@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const [toEmail, setToEmail] = useState('');
+  const [toSubject, setToSubject] = useState('');
   const [htmlBody, setHtmlBody] = useState('');
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,20 +20,23 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ toEmail, htmlBody }),
+        body: JSON.stringify({ toEmail, htmlBody, toSubject }),
       });
 
       const data = await response.json();
-      
+      console.log(data);
       if (response.ok) {
         setStatus('success');
         setToEmail('');
+        setToSubject('');
         setHtmlBody('');
       } else {
         setStatus('error');
+        console.error('Server error:', data.error);
       }
     } catch (error) {
       setStatus('error');
+      console.error('Client error:', error);
     } finally {
       setLoading(false);
     }
@@ -53,6 +57,19 @@ export default function Home() {
               type="email"
               value={toEmail}
               onChange={(e) => setToEmail(e.target.value)}
+              className={styles.input}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="toSubject" className={styles.label}>
+              To Subject:
+            </label>
+            <input
+              id="toSubject"
+              type="text"
+              value={toSubject}
+              onChange={(e) => setToSubject(e.target.value)}
               className={styles.input}
               required
             />
@@ -84,7 +101,7 @@ export default function Home() {
             <p className={styles.successMessage}>Email sent successfully!</p>
           )}
           {status === 'error' && (
-            <p className={styles.errorMessage}>Failed to send email. Please try again.</p>
+            <p className={styles.errorMessage}>Failed to send email. Please check all fields and try again.</p>
           )}
         </form>
       </main>

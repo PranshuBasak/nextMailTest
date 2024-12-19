@@ -3,11 +3,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { htmlBody, toEmail } = await request.json();
+    const { htmlBody, toEmail, toSubject } = await request.json();
 
-    if (!htmlBody || !toEmail) {
+    if (!htmlBody || !toEmail || !toSubject) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Missing required fields: Please provide email, subject, and content' },
         { status: 400 }
       );
     }
@@ -25,7 +25,7 @@ export async function POST(request) {
     const mailOptions = {
       from: process.env.SMTP_USER,
       to: toEmail,
-      subject: 'Test Email from Next.js',
+      subject: toSubject,
       html: htmlBody,
     };
 
