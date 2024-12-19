@@ -166,3 +166,84 @@ a.secondary {
     filter: invert();
   }
 }
+
+.email-form {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.email-form .main {
+  width: 100%;
+  max-width: 600px;
+}
+
+.email-form .title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.email-form .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.email-form .label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.email-form .input,
+.email-form .textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+
+.email-form .textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.email-form .button {
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.email-form .buttonEnabled {
+  background-color: #3b82f6;
+}
+
+.email-form .buttonEnabled:hover {
+  background-color: #2563eb;
+}
+
+.email-form .buttonDisabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.email-form .successMessage {
+  color: #10b981;
+  text-align: center;
+  font-weight: 500;
+}
+
+.email-form .errorMessage {
+  color: #ef4444;
+  text-align: center;
+  font-weight: 500;
+}
